@@ -63,4 +63,6 @@ module.exports = async (req, res) => {
     h += '<meta property="og:site_name" content="Futureloop - ' + escHtml(siteName) + '">\n';
     h += '<meta property="og:locale" content="nb_NO">\n';
     h += '<meta name="twitter:card" content="summary">\n';
-    h += '<meta name="twitter:ti
+   h += '<meta name="twitter:card" content="summary">\n';
+    h += '<meta name="twitter:title" content="' + escAttr(title) + '">\n';
+    h += '<meta name="twitter:description" content="' + escAttr(desc) + '">\n';
