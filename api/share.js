@@ -65,3 +65,19 @@ module.exports = async (req, res) => {
     h += '<meta name="twitter:card" content="summary">\n';
     h += '<meta name="twitter:title" content="' + escAttr(title) + '">\n';
     h += '<meta name="twitter:description" content="' + escAttr(desc) + '">\n';
+    h += '<link rel="canonical" href="' + escAttr(url) + '">\n';
+    h += '</head>\n';
+    h += '<body>\n';
+    h += '<p>' + escHtml(siteName) + ': <a href="' + escAttr(url) + '">' + escHtml(title) + '</a></p>\n';
+    h += '<script>window.location.replace(' + JSON.stringify(url) + ');</script>\n';
+    h += '</body>\n';
+    h += '</html>';
+
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    return res.status(200).send(h);
+  } catch (err) {
+    console.error('Share error:', err);
+    return res.redirect(302, SITE_URL);
+  }
+};
